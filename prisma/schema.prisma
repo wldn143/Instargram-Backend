@@ -10,17 +10,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id Int @id @default(autoincrement())
-  firstName String 
-  lastName String?
-  username String @unique
-  email String @unique
-  password String
-  bio String?
-  avatar String?
-  followers User[] @relation("FollowRelation")
-  following User[] @relation("FollowRelation")
+model User {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String?
+  username  String   @unique
+  email     String   @unique
+  password  String
+  bio       String?
+  avatar    String?
+  Photos    Photo[]
+  followers User[]   @relation("FollowRelation")
+  following User[]   @relation("FollowRelation")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Photo {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int
+  file      String
+  caption   String?
+  hashtags  Hashtag[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Hashtag {
+  id      Int     @id @default(autoincrement())
+  hashtag String  @unique
+  photos  Photo[]
 }
