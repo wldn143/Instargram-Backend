@@ -23,7 +23,7 @@ export default {
             error: "Photo not found.",
           };
         }
-        const photo = await client.photo.update({
+        await client.photo.update({
           where: {
             id,
           },
@@ -35,11 +35,9 @@ export default {
             },
           },
         });
-        // if (photo) {
-        //   return {
-        //     ok: true,
-        //   };
-        // }
+        return {
+          ok: true,
+        };
       }
     ),
   },
