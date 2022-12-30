@@ -19,7 +19,7 @@ model User {
   password  String
   bio       String?
   avatar    String?
-  Photos    Photo[]
+  photos    Photo[]
   followers User[]   @relation("FollowRelation")
   following User[]   @relation("FollowRelation")
   createdAt DateTime @default(now())
