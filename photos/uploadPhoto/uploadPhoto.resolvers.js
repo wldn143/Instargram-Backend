@@ -8,10 +8,12 @@ export default {
         let hashtagObjs = null;
         if (caption) {
           const hashtags = caption.match(/#[\w]+/g);
-          hashtagObjs = hashtags.map((hashtag) => ({
-            where: { hashtag },
-            create: { hashtag },
-          }));
+          if (hashtags) {
+            hashtagObjs = hashtags.map((hashtag) => ({
+              where: { hashtag },
+              create: { hashtag },
+            }));
+          }
         }
 
         return client.photo.create({
@@ -23,7 +25,7 @@ export default {
                 id: loggedInUser.id,
               },
             },
-            ...(hashtagObjs.length > 0 && {
+            ...(hashtagObjs != null && {
               hashtags: {
                 connectOrCreate: hashtagObjs,
               },
