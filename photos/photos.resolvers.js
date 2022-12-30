@@ -5,6 +5,7 @@ export default {
     user: ({ userId }) => {
       return client.user.findUnique({ where: { id: userId } });
     },
+    likes: ({ id }) => client.like.count({ where: { photoId: id } }),
   },
   Hashtag: {
     photos: ({ id }, { page }, { loggedInUser }) => {
