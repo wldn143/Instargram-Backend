@@ -4,11 +4,12 @@ export default gql`
   type Photo {
     id: Int!
     user: User
-    userId: Int!
     file: String!
     caption: String
     hashtags: [Hashtag]
     likes: Int!
+    comments: [Comment]
+    isMine: Boolean!
     createdAt: String!
     updatedAt: String!
   }
