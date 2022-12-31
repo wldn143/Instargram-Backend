@@ -9,7 +9,7 @@ export default {
       const existingUser = await client.user.findFirst({
         where: { OR: [{ username }, { email }] },
       });
-      if (!existingUser) {
+      if (existingUser) {
         return {
           ok: false,
           error: "This username/email is already taken.",
@@ -17,7 +17,7 @@ export default {
       }
       const uglyPassword = await bcrypt.hash(password, 10);
       if (uglyPassword) {
-        client.user.create({
+        await client.user.create({
           data: {
             firstName,
             lastName,
