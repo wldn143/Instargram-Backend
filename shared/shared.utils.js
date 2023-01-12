@@ -13,6 +13,7 @@ export const uploadToS3 = async (file, userId, folderName) => {
     .upload({
       Bucket: "insta-clone-uploads",
       Key: objectName,
+      ACL: "public-read",
       Body: readStream,
     })
     .promise();
