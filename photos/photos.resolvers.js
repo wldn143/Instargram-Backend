@@ -30,6 +30,15 @@ export default {
       }
       return false;
     },
+    comments: ({ id }) =>
+      client.comment.findMany({
+        where: { photoId: id },
+        include: { user: true },
+      }),
+    commentNumber: ({ id }) =>
+      client.comment.count({
+        where: { photoId: id },
+      }),
   },
   Hashtag: {
     photos: ({ id }, { page }, { loggedInUser }) => {

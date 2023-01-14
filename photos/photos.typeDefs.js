@@ -8,6 +8,7 @@ export default gql`
     caption: String
     hashtags: [Hashtag]
     likes: Int!
+    commentNumber: Int!
     comments: [Comment]
     isMine: Boolean!
     isLiked: Boolean!
