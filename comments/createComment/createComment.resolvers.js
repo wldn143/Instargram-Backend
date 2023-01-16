@@ -15,7 +15,7 @@ export default {
             error: "Photo not found",
           };
         }
-        await client.comment.create({
+        const newComment = await client.comment.create({
           data: {
             payload,
             user: { connect: { id: loggedInUser.id } },
@@ -24,6 +24,7 @@ export default {
         });
         return {
           ok: true,
+          id: newComment.id,
         };
       }
     ),
