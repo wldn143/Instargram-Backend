@@ -1,6 +1,14 @@
 import client from "../client";
 
 export default {
+  Message: {
+    user: ({ id }) =>
+      client.message
+        .findUnique({
+          where: { id },
+        })
+        .user(),
+  },
   Room: {
     users: ({ id }) =>
       client.room
